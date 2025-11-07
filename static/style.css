@@ -1,0 +1,15 @@
+body { font-family: Arial, sans-serif; background:#f4f6f8; padding:20px; }
+.container { max-width: 980px; margin: auto; background:#fff; padding:28px; border-radius:12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+h1, h2 { text-align: center; margin: 10px 0 16px; }
+.form, .filter-form { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:16px; }
+input, button, select { padding:10px; font-size:16px; border:1px solid #d0d7de; border-radius:8px; }
+button { background:#2ea44f; color:#fff; cursor:pointer; border:none; }
+button:hover { background:#22863a; }
+.link { margin-left:8px; text-decoration:none; color:#0366d6; align-self:center; }
+table { width:100%; border-collapse:collapse; margin-top:12px; }
+th, td { padding:10px; text-align:left; border-bottom:1px solid #e5e7eb; }
+.alert { background:#fee2e2; color:#991b1b; padding:10px 12px; border-radius:8px; margin-bottom:12px; text-align:center; }
+.badge { background:#eef2ff; color:#3730a3; padding:8px 10px; border-radius:999px; display:inline-block; margin:6px 0; }
+pre.box { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; overflow:auto; }
+canvas { width:100%; max-width:900px; }

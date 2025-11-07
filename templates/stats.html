@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stats</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Analytics</h1>
+  <a class="link" href="/">Home</a>
+
+  <h2>Category-wise Spend</h2>
+  <canvas id="cat"></canvas>
+
+  <h2 style="margin-top:24px;">Monthly Spend</h2>
+  <canvas id="mon"></canvas>
+</div>
+
+<script>
+  const categoryData = {{ category_data | safe }};
+  const monthData = {{ month_data | safe }};
+</script>
+<script src="{{ url_for('static', filename='charts.js') }}"></script>
+</body>
+</html>

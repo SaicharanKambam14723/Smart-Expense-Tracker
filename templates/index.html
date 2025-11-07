@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>Expense Tracker</h1>
+
+  {% if month_budget %}
+    <div class="badge">
+      {{ month_spent | round(2) }} / {{ month_budget | round(2) }} this month
+    </div>
+  {% endif %}
+
+  {% if over_budget %}
+    <div class="alert">⚠ You have exceeded the monthly budget!</div>
+  {% endif %}
+
+  <!-- Add -->
+  <form action="/add" method="POST" class="form">
+    <input type="number" step="0.01" name="amount" placeholder="Amount" required>
+    <input type="text" name="category" placeholder="Category" required>
+    <input type="text" name="description" placeholder="Description">
+    <input type="date" name="date">
+    <button type="submit">Add</button>
+  </form>
+
+  <!-- Filter -->
+  <form method="GET" class="filter-form">
+    <input type="text" name="category" placeholder="Filter by category">
+    <input type="date" name="start_date" placeholder="From">
+    <input type="date" name="end_date" placeholder="To">
+    <button type="submit">Filter</button>
+    <a class="link" href="{{ url_for('reports') }}">Reports</a>
+    <a class="link" href="{{ url_for('stats') }}">Charts</a>
+    <a class="link" href="{{ url_for('upload_receipt') }}">OCR Upload</a>
+    <a class="link" href="{{ url_for('budget') }}">Budget</a>
+  </form>
+
+  <h2>Total Spent: ₹{{ total | round(2) }}</h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for e in expenses %}
+      <tr>
+        <td>{{ e[4] }}</td>
+        <td>₹{{ e[1] }}</td>
+        <td>{{ e[2] }}</td>
+        <td>{{ e[3] }}</td>
+        <td>
+          <a href="/edit/{{ e[0] }}">Edit</a> |
+          <a href="/delete/{{ e[0] }}" onclick="return confirm('Delete?')">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

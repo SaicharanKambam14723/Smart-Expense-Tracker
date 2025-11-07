@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reports</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Reports</h1>
+  <a class="link" href="/">Home</a>
+
+  <h2>Monthly Summary</h2>
+  <table>
+    <thead><tr><th>Month</th><th>Total</th></tr></thead>
+    <tbody>
+    {% for r in monthly %}
+      <tr><td>{{ r.month }}</td><td>₹{{ r.amount | round(2) }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>By Category</h2>
+  <table>
+    <thead><tr><th>Category</th><th>Total</th></tr></thead>
+    <tbody>
+    {% for r in category %}
+      <tr><td>{{ r.category }}</td><td>₹{{ r.amount | round(2) }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Charts</h2>
+  <canvas id="monthlyChart"></canvas>
+  <canvas id="categoryChart" style="margin-top:24px;"></canvas>
+</div>
+
+<script>
+  const monthlyData = {{ monthly_json | safe }};
+  const categoryData = {{ category_json | safe }};
+</script>
+<script src="{{ url_for('static', filename='charts.js') }}"></script>
+</body>
+</html>

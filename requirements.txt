@@ -1,0 +1,6 @@
+flask
+easyocr
+pillow
+matplotlib
+pandas
+sqlite3-binary
